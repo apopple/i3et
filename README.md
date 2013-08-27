@@ -1,11 +1,9 @@
-===========
 DESCRIPTION
 ===========
 
 This collection of python scripts can be used as a notification daemon
 for i3bar to display notifications on the status bar.
 
-========
 PROGRAMS
 ========
 
@@ -22,7 +20,6 @@ Listens on the org.freedesktop.Notifications DBus name for DBus
 notifications and outputs JSON formatted data to the i3et FIFO
 (/tmp/i3et by default).
 
-===========
 JSON FORMAT
 ===========
 

@@ -19,8 +19,12 @@ current_data = dict()
 def decode_data(data):
   if data[0:3] == ',[{':
     # This looks like it is probably data from i3status
-    data = json.loads(data[1:])
-    module = "i3status"
+    try:
+      data = json.loads(data[1:])
+      module = "i3status"
+
+    except:
+      return
   else:
     try:
       data = json.loads(data)
@@ -84,12 +88,13 @@ def main():
   global next_wake_time
 
   try:
-      mkfifo(INPUT_FIFO)
-  
+    unlink(INPUT_FIFO)
+
   except OSError:
-    # Ignore if file already exists
+    # Ignore if file doesn't exist
     pass
-  
+
+  mkfifo(INPUT_FIFO)
   fifo = None
   poll = epoll()
   while True:
